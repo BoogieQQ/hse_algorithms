@@ -1,11 +1,11 @@
 from main import is_palindrome
 
 
-def test_one():
+def test_one_digit():
     for i in range(1, 9):
         assert is_palindrome(i)
 
-def test_two():
+def test_two_digits():
     for i in range(10, 19):
         if i != 11:
             assert not is_palindrome(i) 
