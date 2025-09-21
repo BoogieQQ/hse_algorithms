@@ -1,4 +1,4 @@
-def find_max(arr):
+def find_max_odd_sum(arr):
     if len(arr) == 0:
         return 0
     arr = list(map(int, arr.split()))
