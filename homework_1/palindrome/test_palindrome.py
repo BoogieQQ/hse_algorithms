@@ -2,10 +2,15 @@ from main import is_palindrome
 
 
 def test_one():
-    assert is_palindrome(1)
+    for i in range(1, 9):
+        assert is_palindrome(i)
 
-def test_ten():
-    assert not is_palindrome(10)
+def test_two():
+    for i in range(10, 19):
+        if i != 11:
+            assert not is_palindrome(i) 
+        else:
+            assert is_palindrome(i)
 
 def test_odd():
     assert is_palindrome(101)
