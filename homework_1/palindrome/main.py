@@ -5,5 +5,3 @@ def is_palindrome(n):
         return True
 
     return n_str[:n_len // 2] == n_str[::-1][:n_len // 2]
-
-print(is_palindrome(1))
