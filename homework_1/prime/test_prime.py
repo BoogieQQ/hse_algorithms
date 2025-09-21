@@ -9,7 +9,7 @@ def test_known_numbers():
                    43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97,
                    101, 103, 107, 109, 113, 127, 131, 137, 139, 149]
     
-    for i in range(1, known_primes[-1]+1):
+    for i in range(1, known_primes[-1] + 1):
         expected = sum([e in known_primes for e in range(1, i)])
         assert count_primes(i) == expected, f"Failed for n={i}"
 
