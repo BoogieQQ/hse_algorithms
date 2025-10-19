@@ -1,4 +1,4 @@
-from main import AVL  # Assuming the AVL class is in avl.py
+from main import AVL 
 
 
 def test_avl_initialization():
