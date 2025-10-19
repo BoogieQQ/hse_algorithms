@@ -6,7 +6,6 @@ def test_avl_initialization():
     assert avl.root is None
     assert avl.is_balanced() == True
 
-
 def test_insert_into_empty_tree():
     avl = AVL()
     avl.insert(10)
@@ -14,7 +13,6 @@ def test_insert_into_empty_tree():
     assert avl.root.value == 10
     assert avl.root.height == 1
     assert avl.is_balanced() == True
-
 
 def test_insert():
     avl = AVL()
@@ -37,7 +35,6 @@ def test_search_nonexistent_values():
     assert avl.search(0) is None
     assert avl.is_balanced() == True
 
-
 def test_delete_leaf_node():
     avl = AVL()
     avl.insert(1)
@@ -49,7 +46,6 @@ def test_delete_leaf_node():
     assert avl.search(1) is not None
     assert avl.search(2) is not None
     assert avl.is_balanced() == True
-
 
 def test_delete_node_with_one_child():
     avl = AVL()
@@ -64,7 +60,6 @@ def test_delete_node_with_one_child():
     assert avl.search(3) is not None
     assert avl.search(2) is not None
     assert avl.is_balanced() == True
-
 
 def test_delete_left_node_with_two_children():
     avl = AVL()
@@ -92,7 +87,6 @@ def test_delete_right_node_with_two_children():
     assert avl.search(8) is not None
     assert avl.is_balanced() == True
 
-
 def test_delete_root_node():
     avl = AVL()
     avl.insert(1)
@@ -104,7 +98,6 @@ def test_delete_root_node():
     assert avl.search(1) is not None
     assert avl.search(3) is not None
     assert avl.is_balanced() == True
-
 
 def test_delete_from_empty_tree():
     avl = AVL()
@@ -124,7 +117,6 @@ def test_delete_nonexistent_value():
     assert avl.search(3) is not None
     assert avl.is_balanced() == True
 
-
 def test_balance_property():
     avl = AVL()
     
@@ -139,7 +131,6 @@ def test_balance_property():
         assert avl.search(value) is not None
 
     assert avl.is_balanced() == True
-
 
 def test_left_rotations():
     avl = AVL()
@@ -164,7 +155,6 @@ def test_right_rotations():
     assert avl.root.right.value == 3
     assert avl.is_balanced() == True
 
-
 def test_left_right_rotation():
     avl = AVL()
     avl.insert(3)
@@ -175,7 +165,6 @@ def test_left_right_rotation():
     assert avl.root.left.value == 1
     assert avl.root.right.value == 3
     assert avl.is_balanced() == True
-
 
 def test_right_left_rotation():
     avl = AVL()
