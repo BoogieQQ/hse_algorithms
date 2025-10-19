@@ -9,7 +9,7 @@ def trace_recursion(func):
                 None, 
                 [
                     ", ".join([str(arg) for arg in args]), 
-                    ", ".join([f"{k}={str(v)}" for k, v in kwargs.items()])
+                    ", ".join([f"{str(k)}={str(v)}" for k, v in kwargs.items()])
                 ]
                 )
             )
