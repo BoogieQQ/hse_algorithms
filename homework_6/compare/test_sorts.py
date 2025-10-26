@@ -38,6 +38,16 @@ def test_reverse_sorted_performance():
     
     assert quick_result['time'] > merge_result['time'] * 1.5
 
+def test_sort_random():
+    import random
+    large_list = [random.randint(1, 100) for _ in range(100)]
+    
+    quick_result = timed_quicksort(large_list.copy())
+    merge_result = timed_mergesort(large_list.copy())
+    
+    expected = sorted(large_list)
+    assert quick_result['result'] == sorted(expected)
+    assert merge_result['result'] == sorted(expected)
 
 def test_duplicate_elements():
     duplicate_list = [1,2,3,2,2,2,2,3,1,3,2,2,2,3,1,3]
@@ -57,5 +67,15 @@ def test_negative_numbers():
     merge_result = timed_mergesort(test_list.copy())
     
     expected = sorted(test_list)
+    assert quick_result['result'] == expected
+    assert merge_result['result'] == expected
+
+def test_strings():
+    test_list = ['d','a','b','c']
+    
+    quick_result = timed_quicksort(test_list.copy())
+    merge_result = timed_mergesort(test_list.copy())
+    
+    expected = ['a', 'b', 'c', 'd']
     assert quick_result['result'] == expected
     assert merge_result['result'] == expected
