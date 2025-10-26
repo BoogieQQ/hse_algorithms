@@ -13,28 +13,28 @@ def test_sort_one_element():
 def test_sort_three_elements():
     tests = [list(test) for test in permutations([1,2,3])]
     for test in tests:
-        assert timed_quicksort(test)['result'] == [1,2,3]
-        assert timed_mergesort(test)['result'] == [1,2,3]
+        assert timed_quicksort(test.copy())['result'] == [1,2,3]
+        assert timed_mergesort(test.copy())['result'] == [1,2,3]
 
 def test_sort_four_elements():
     tests = [list(test) for test in permutations([1,2,3,4])]
     for test in tests:
-        assert timed_quicksort(test)['result'] == [1,2,3,4]
-        assert timed_mergesort(test)['result'] == [1,2,3,4]
+        assert timed_quicksort(test.copy())['result'] == [1,2,3,4]
+        assert timed_mergesort(test.copy())['result'] == [1,2,3,4]
 
 def test_quicksort_worst_case_vs_mergesort():
     worst_case = list(range(1000))
     
-    quick_result = timed_quicksort(worst_case)
-    merge_result = timed_mergesort(worst_case)
+    quick_result = timed_quicksort(worst_case.copy())
+    merge_result = timed_mergesort(worst_case.copy())
     
     assert quick_result['time'] > merge_result['time'] * 1.5
 
 def test_reverse_sorted_performance():
     reverse_sorted = list(range(1000, 0, -1))
     
-    quick_result = timed_quicksort(reverse_sorted)
-    merge_result = timed_mergesort(reverse_sorted)
+    quick_result = timed_quicksort(reverse_sorted.copy())
+    merge_result = timed_mergesort(reverse_sorted.copy())
     
     assert quick_result['time'] > merge_result['time'] * 1.5
 
