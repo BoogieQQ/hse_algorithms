@@ -1,0 +1,101 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\title{Кучи}
+\author{Борисов Иван Максимович}
+\date{2025.11.09}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\section{Алгоритм построения кучи за $O(n \log n)$}
+
+\subsection{Описание алгоритма}
+Первый алгоритм основан на функции \texttt{shift\_up} и имеет сложность $O(n \log n)$. Докажем это.
+
+\subsection{Доказательство сложности $O(n \log n)$ в случае использования \texttt{shift\_up}}
+
+Пусть $n$ - количество элементов в массиве,  $h$ - высота кучи.
+
+\begin{enumerate}
+    \item  $\forall i=1, \dots, n-1$ вызывается функция \texttt{shift\_up}, где $i$ - индекс элемента в массиве.
+    \item В худшем случае операция \texttt{shift\_up} для элемента на уровне $h$ требует $h$ перестановок элементов.
+    \item Высота кучи $h = \lfloor \log_2 n \rfloor$.
+\end{enumerate}
+Объединим эти $3$ факта:
+$$
+T(n) = \sum_{i=1}^{n} O(\log i) = O\left(\sum_{i=1}^{n} \log i\right)
+$$
+Преобразуем:
+
+\begin{align*}
+    \sum_{i=1}^{n} \log i &= \log(n!) = \log(1\cdot 2 \cdot  \text{...} \cdot (n-1) \cdot n)  \leq  \log (n\cdot n \cdot  \text{...} \cdot n \cdot n)  = \\
+    &= \log(n^n) = n \log n
+\end{align*}
+Таким образом:
+$$
+\boxed{T(n) = O(n \log n)}
+$$
+\newpage
+
+\section{Алгоритм построения кучи за $O(n)$}
+
+\subsection{Описание алгоритма}
+Второй алгоритм основан на функции \texttt{shift\_down} и имеет сложность $O(n)$. Докажем это.
+
+\subsection{Доказательство сложности $O(n)$}
+
+Пусть $n$ - количество элементов, $h$ - высота кучи $\Leftrightarrow$ высота корня (определим высоту вершины как длину самого длинного пути от этой вершины до листа).
+
+\begin{enumerate}
+\item Высота кучи: $h = \lfloor \log_2 n \rfloor$
+\item Пусть $d_k$ - количество вершин высоты $k \Rightarrow$ $d_k \leq \lceil \frac{n}{2^{k+1}} \rceil$
+\item Количество перестановок в функции \texttt{shift\_down} для вершины на уровне $k$ не более k $\Rightarrow$ $O(k)$
+\end{enumerate}
+Объединим эти $3$ факта:
+$$
+T(n) = \sum_{k=0}^{h} d_k \cdot O(k) \leq \sum_{k=0}^{h}  \left\lceil \frac{n}{2^{k+1}} \right\rceil \cdot c \cdot k = \frac{c n}{2} \cdot \sum_{k=0}^{h} \frac{k}{2^{k}}
+$$
+Известно, что:
+$$
+S(x)= \sum_{j=0}^{\infty} jx^j = \frac{x}{(1-x)^2}, \text{при } |x| < 1 
+$$
+$$
+S\left (\frac{1}{2} \right)= \frac{\frac{1}{2}}{(1-\frac{1}{2})^2}=2 \Rightarrow \sum_{k=0}^{h} \frac{k}{2^{k}} \leq 2 \text{ (сходится)}
+$$
+Таким образом:
+$$
+\boxed{T(n) = \hat{c} \cdot n = O(n)}
+$$
+
+\newpage
+
+\section{Сравненение времени работы}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Size} & \textbf{O(n log n)} & \textbf{O(n)} & \textbf{Ratio} \\
+\hline
+10^2  & 0.000031 & 0.000025 & 1.23 \\
+\hline
+10^3  & 0.000299 & 0.000285 & 1.05 \\
+\hline
+10^4  & 0.003069 & 0.002790 & 1.10 \\
+\hline
+10^5  & 0.030624 & 0.026554 & 1.15 \\
+\hline
+10^6  & 0.309803 & 0.275316 & 1.13 \\
+\hline
+\end{tabular}
+\caption{Сравнение производительности алгоритмов в секундах при заданных размерах массива (элементы массива генерируются случайно)}
+\end{table}
+
+
+\end{document}
