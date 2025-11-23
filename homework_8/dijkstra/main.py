@@ -18,7 +18,7 @@ class Graph:
     
 
 def dijkstra(graph, start):
-    distances = {node: float('infinity') for node in graph.nodes}
+    distances = {node: float('inf') for node in graph.nodes}
     distances[start] = 0
     path = {node: None for node in graph.nodes}
     heap = [(0, start)]
